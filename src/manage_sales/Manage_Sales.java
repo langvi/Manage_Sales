@@ -5,17 +5,25 @@
  */
 package manage_sales;
 
+import view.Login;
+
 /**
  *
  * @author lang vi
  */
 public class Manage_Sales {
-
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+       Login login = new Login();
+       login.setVisible(true);
+       login.setResizable(false);
+//        MyData data = new MyData();
+//        if(data.isConnect("jdbc:mysql://localhost:3306/hello","vi", "123456")){
+//            System.out.println("Thanh cong");
+//        }
+//        else{
+//            System.out.println("That bai");
+//        }
+//        data.listCustomers();
     }
     
 }
