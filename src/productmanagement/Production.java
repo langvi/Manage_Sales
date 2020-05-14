@@ -5,10 +5,12 @@
  */
 package productmanagement;
 
+import java.io.Serializable;
+
 /**
  *
  * @author HieuVu
  */
-public class Production {
-    
+public class Production implements Serializable{
+    private String Id, NameProduct, Price;
 }
