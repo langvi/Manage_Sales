@@ -1,21 +1,44 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
+import base.BaseApp;
+import controller.DataLogin;
 import java.awt.Color;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
+import model.ConnectDatabase;
 
-/**
- *
- * @author lang vi
- */
 public class Login extends javax.swing.JFrame {
+    String myPermission = "";
+    DataLogin dataLogin;
+    Connection connection;
+    String queryUserName = "SELECT user_name FROM data_login";
+    String queryPassword = "SELECT password FROM data_login";
+    String queryPermission = "SELECT * FROM data_login";
+
     public Login() {
-        super.setTitle("QUẢN LÍ HÀNG HÓA");
+        super.setTitle("QUẢN LÍ BÁN HÀNG");
+        connection = new ConnectDatabase().connectDB();
+        dataLogin = new DataLogin();
         initComponents();
     }
+
+    private void CheckValidate() {
+        if (dataLogin.isCheck(queryUserName, txtUserName.getText().trim(), "user_name") && 
+                dataLogin.isCheck(queryPassword, txtPassword.getText().trim(), "password")) {
+            if(dataLogin.checkPermission(queryPermission, txtUserName.getText().trim())){
+                System.out.println("Admin");
+            }
+            else{
+                System.out.println("User");
+            }
+            dispose();
+            new Home().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Tài khoản hoặc mật khẩu không đúng");
+        }
+
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -29,7 +52,6 @@ public class Login extends javax.swing.JFrame {
         savePassword = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
-        btnRegister = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(400, 200, 0, 0));
@@ -97,19 +119,7 @@ public class Login extends javax.swing.JFrame {
                 btnLoginActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 260, 110, 30));
-
-        btnRegister.setBackground(Color.BLUE);
-        btnRegister.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnRegister.setForeground(Color.WHITE);
-        btnRegister.setText("Đăng kí");
-        btnRegister.setBorder(javax.swing.BorderFactory.createLineBorder(Color.BLUE));
-        btnRegister.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegisterActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnRegister, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 260, 110, 30));
+        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 110, 30));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 580, 370));
 
@@ -121,7 +131,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUserNameActionPerformed
 
     private void savePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePasswordActionPerformed
-        // TODO add your handling code here:
+//        CheckValidate();
     }//GEN-LAST:event_savePasswordActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -129,20 +139,12 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        dispose();
-        new Home().setVisible(true);
+        CheckValidate();
     }//GEN-LAST:event_btnLoginActionPerformed
-
-    private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-         Register register = new Register();
-         register.setVisible(true);
-         register.setResizable(false);
-    }//GEN-LAST:event_btnRegisterActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
-    private javax.swing.JButton btnRegister;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
