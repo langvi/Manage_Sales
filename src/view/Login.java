@@ -1,44 +1,36 @@
 package view;
 
 import base.BaseApp;
-import controller.DataLogin;
+import controller.LoginController;
 import java.awt.Color;
-import java.sql.Connection;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import javax.swing.JOptionPane;
-import model.ConnectDatabase;
 
 public class Login extends javax.swing.JFrame {
-    String myPermission = "";
-    DataLogin dataLogin;
-    Connection connection;
-    String queryUserName = "SELECT user_name FROM data_login";
-    String queryPassword = "SELECT password FROM data_login";
-    String queryPermission = "SELECT * FROM data_login";
 
+    LoginController loginController;
+    boolean isSavePassword = false;
     public Login() {
         super.setTitle("QUẢN LÍ BÁN HÀNG");
-        connection = new ConnectDatabase().connectDB();
-        dataLogin = new DataLogin();
+        loginController  = new LoginController();
         initComponents();
+        loginController.readUser(BaseApp.path, txtUserName, txtPassword);
+        setCheckBox();
     }
-
-    private void CheckValidate() {
-        if (dataLogin.isCheck(queryUserName, txtUserName.getText().trim(), "user_name") && 
-                dataLogin.isCheck(queryPassword, txtPassword.getText().trim(), "password")) {
-            if(dataLogin.checkPermission(queryPermission, txtUserName.getText().trim())){
-                System.out.println("Admin");
+    public final void setCheckBox() {
+        savePassword.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange()==1){
+                    isSavePassword = true;
+                }
+                else{
+                    isSavePassword = false;
+                }
             }
-            else{
-                System.out.println("User");
-            }
-            dispose();
-            new Home().setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "Tài khoản hoặc mật khẩu không đúng");
-        }
-
+        });
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -136,7 +128,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUserNameActionPerformed
 
     private void savePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePasswordActionPerformed
-//        CheckValidate();
+//        setCheckBox();
     }//GEN-LAST:event_savePasswordActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -144,11 +136,29 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        CheckValidate();
+        if(loginController.CheckValidate(txtUserName.getText().trim(), txtPassword.getText().trim())==1){
+            BaseApp.permission = 1;
+            dispose();
+            if(isSavePassword){
+                loginController.savePassword(BaseApp.path, txtUserName.getText().trim(), txtPassword.getText().trim());
+            }
+            new Home().setVisible(true);
+        }
+        else if(loginController.CheckValidate(txtUserName.getText().trim(), txtPassword.getText().trim())==2){
+            BaseApp.permission = 2;
+            dispose();
+            if(isSavePassword){
+                loginController.savePassword(BaseApp.path, txtUserName.getText().trim(), txtPassword.getText().trim());
+            }
+            new Home().setVisible(true);
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Tài khoản hoặc mật khẩu không đúng");
+        }
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnLoginKeyPressed
-        
+
     }//GEN-LAST:event_btnLoginKeyPressed
 
 

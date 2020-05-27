@@ -1,6 +1,6 @@
 package view.khachHang;
 
-import controller.DataCustomer;
+import model.CustomerModel;
 import data.Customer;
 
 public class ThemKhachHang extends javax.swing.JFrame {
@@ -8,12 +8,12 @@ public class ThemKhachHang extends javax.swing.JFrame {
     String insertQuery = "insert into customer(name, year_of_birth, number_phone, address)"
             + "values(?,?,?,?) ";
     Customer addCustomer; 
-    DataCustomer dataCustomer;
+    CustomerModel dataCustomer;
 
     public ThemKhachHang() {
         super.setTitle("Thêm khách hàng");
         addCustomer = new Customer();
-        dataCustomer = new DataCustomer();
+        dataCustomer = new CustomerModel();
         initComponents();
     }
 

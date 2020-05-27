@@ -1,4 +1,4 @@
-package controller;
+package model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,10 +10,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import model.ConnectDatabase;
 import data.Customer;
 
-public class DataCustomer {
+public class CustomerModel {
 
     Connection connection = new ConnectDatabase().connectDB();
 
@@ -27,7 +26,7 @@ public class DataCustomer {
             ResultSet result = stm.executeQuery(query);
             while (result.next()) {
                 Customer customer = new Customer();
-                customer.setId(result.getString("id"));
+                customer.setId(result.getString("customerID"));
                 customer.setName(result.getString("name"));
                 customer.setYearOfBirth(result.getString("year_of_birth"));
                 customer.setPhoneNumber(result.getString("number_phone"));
@@ -36,7 +35,7 @@ public class DataCustomer {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(DataCustomer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CustomerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         for (int i = 0; i < list.size(); i++) {
             String[] data = new String[5];
@@ -62,8 +61,8 @@ public class DataCustomer {
             pst.setString(4, customer.getAddress());
             pst.execute();
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerModel.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

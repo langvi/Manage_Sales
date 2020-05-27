@@ -1,13 +1,13 @@
 
 package view.khachHang;
 
-import controller.DataCustomer;
+import model.CustomerModel;
 
 public class KhachHang extends javax.swing.JPanel {
-    DataCustomer dataCustomer;
-    String queryData = "SELECT id, name, year_of_birth, number_phone, address FROM customer";
+    CustomerModel dataCustomer;
+    String queryData = "SELECT customerID, name, year_of_birth, number_phone, address FROM customer";
     public KhachHang() {
-        dataCustomer = new DataCustomer();
+        dataCustomer = new CustomerModel();
         initComponents();
     }
     @SuppressWarnings("unchecked")
@@ -125,6 +125,7 @@ public class KhachHang extends javax.swing.JPanel {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         ThemKhachHang addCustomer = new ThemKhachHang();
         addCustomer.setVisible(true);
+        
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed

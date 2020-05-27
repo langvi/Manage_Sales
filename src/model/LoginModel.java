@@ -1,5 +1,5 @@
 
-package controller;
+package model;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -7,9 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import model.ConnectDatabase;
 
-public class DataLogin {
+
+public class LoginModel {
     Connection  connection = new ConnectDatabase().connectDB();
     public boolean isCheck(String query, String checkString, String columnName) {
         try {
@@ -22,10 +22,11 @@ public class DataLogin {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(DataLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
+    // Kiểm tra quyền của tài khoản đăng nhập
     public boolean checkPermission(String query, String userName){
         String permissionString = "admin";
         try {
@@ -40,8 +41,9 @@ public class DataLogin {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(DataLogin.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginModel.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
     }
+    
 }

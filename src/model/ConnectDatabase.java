@@ -14,7 +14,7 @@ public class ConnectDatabase {
     public Connection connectDB() {
         Connection conn;
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/mydata?autoReconnect=true&useSSL=false",
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/sales_database?autoReconnect=true&useSSL=false",
                     "root", "");
             return conn;
         } catch (SQLException ex) {
