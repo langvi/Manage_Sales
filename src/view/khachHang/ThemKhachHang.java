@@ -1,20 +1,28 @@
 package view.khachHang;
 
-import model.CustomerModel;
-import data.Customer;
+import base.BaseApp;
+import controller.KhachHangController;
+import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
+import model.Customer;
 
 public class ThemKhachHang extends javax.swing.JFrame {
+
     // Câu lệnh truy vấn vào cơ sở dữ liệu MySQL
-    String insertQuery = "insert into customer(name, year_of_birth, number_phone, address)"
-            + "values(?,?,?,?) ";
-    Customer addCustomer; 
-    CustomerModel dataCustomer;
+    String insertQuery = "insert into customer(phone_number, customer_name, customer_sex, year_of_birth, address, create_at)"
+            + "values(?,?,?,?,?,?) ";
+    Customer addCustomer;
+    KhachHangController controller;
 
     public ThemKhachHang() {
         super.setTitle("Thêm khách hàng");
         addCustomer = new Customer();
-        dataCustomer = new CustomerModel();
+        controller = new KhachHangController();
         initComponents();
+        ButtonGroup bg = new ButtonGroup();
+        bg.add(btnNam);
+        bg.add(btnNu);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -33,6 +41,9 @@ public class ThemKhachHang extends javax.swing.JFrame {
         txtYearOfBirth = new javax.swing.JTextField();
         btnAdd = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        btnNam = new javax.swing.JRadioButton();
+        btnNu = new javax.swing.JRadioButton();
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Thông tin khách hàng");
@@ -59,6 +70,12 @@ public class ThemKhachHang extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Giới tính:");
+
+        btnNam.setText("Nam");
+
+        btnNu.setText("Nữ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -76,17 +93,24 @@ public class ThemKhachHang extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel3)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel5)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(txtYearOfBirth, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel4)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel3))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(btnNam)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnNu)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(289, 289, 289)
                         .addComponent(btnAdd)
@@ -99,11 +123,16 @@ public class ThemKhachHang extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addComponent(jLabel1)
-                .addGap(42, 42, 42)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(btnNam)
+                    .addComponent(btnNu))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -119,7 +148,7 @@ public class ThemKhachHang extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
                     .addComponent(btnCancel))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -130,22 +159,35 @@ public class ThemKhachHang extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        addCustomer.setName(txtName.getText());
-        addCustomer.setAddress(txtAddress.getText());
-        addCustomer.setPhoneNumber(txtPhoneNumber.getText());
-        addCustomer.setYearOfBirth(txtYearOfBirth.getText());
-        
-        // Thêm đối tượng addCustomer vào cơ sở dữ liệu
-        dataCustomer.AddDatabase(insertQuery, addCustomer);
-        
-        dispose(); 
+        String customerSex = "";
+        if (btnNam.isSelected()) {
+            customerSex = "nam";
+        } else {
+            customerSex = "nữ";
+        }
+        if (!BaseApp.isNumber(txtPhoneNumber.getText())) {
+            JOptionPane.showMessageDialog(this, "Số điện thoại không hợp lệ");
+        } else if (!BaseApp.isNumber(txtYearOfBirth.getText())) {
+            JOptionPane.showMessageDialog(this, "Năm sinh không hợp lệ");
+        } else {
+            addCustomer.setCustomer_phone_number(txtPhoneNumber.getText());
+            addCustomer.setCustomer_birth(txtYearOfBirth.getText());
+            addCustomer.setCustomer_address(txtAddress.getText());
+            addCustomer.setCustomer_name(txtName.getText());
+            addCustomer.setCustomer_sex(customerSex);
+            controller.AddDatabase(insertQuery, addCustomer);
+        }
+
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
@@ -156,11 +198,14 @@ public class ThemKhachHang extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JRadioButton btnNam;
+    private javax.swing.JRadioButton btnNu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtName;

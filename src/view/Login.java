@@ -128,7 +128,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUserNameActionPerformed
 
     private void savePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savePasswordActionPerformed
-//        setCheckBox();
+
     }//GEN-LAST:event_savePasswordActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -142,6 +142,7 @@ public class Login extends javax.swing.JFrame {
             if(isSavePassword){
                 loginController.savePassword(BaseApp.path, txtUserName.getText().trim(), txtPassword.getText().trim());
             }
+            BaseApp.userName = txtUserName.getText().trim();
             new Home().setVisible(true);
         }
         else if(loginController.CheckValidate(txtUserName.getText().trim(), txtPassword.getText().trim())==2){
@@ -150,6 +151,7 @@ public class Login extends javax.swing.JFrame {
             if(isSavePassword){
                 loginController.savePassword(BaseApp.path, txtUserName.getText().trim(), txtPassword.getText().trim());
             }
+            BaseApp.userName = txtUserName.getText().trim();
             new Home().setVisible(true);
         }
         else{

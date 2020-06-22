@@ -1,18 +1,19 @@
+package model;
 
-package data;
+import java.sql.Date;
 
-public class productProperties {
-    
+public class Product {
+
     private String id;
     private String name;
-    private String product_code; 
     private String category;
-    private int retail_price; // Giá bán lẻ
-    private int entry_price;
+    private float retail_price; // Giá bán lẻ
+    private float entry_price;
     private String describe;
     private int product_number;
-    private int product_volume;
-    
+    private String note;
+    private Date createAt;
+
     public String getId() {
         return id;
     }
@@ -29,23 +30,23 @@ public class productProperties {
         this.name = name;
     }
 
-    public String getProduct_code() {
-        return product_code;
-    }
-
-    public void setProduct_code(String product_code) {
-        this.product_code = product_code;
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public String getCategory() {
         return category;
     }
 
+    public void setCreateAt(Date createAt) {
+        this.createAt = createAt;
+    }
+
     public void setCategory(String category) {
         this.category = category;
     }
 
-    public int getRetail_price() {
+    public float getRetail_price() {
         return retail_price;
     }
 
@@ -53,7 +54,7 @@ public class productProperties {
         this.retail_price = retail_price;
     }
 
-    public int getEntry_price() {
+    public float getEntry_price() {
         return entry_price;
     }
 
@@ -77,12 +78,12 @@ public class productProperties {
         this.product_number = product_number;
     }
 
-    public int getProduct_volume() {
-        return product_volume;
+    public String getNote() {
+        return note;
     }
 
-    public void setProduct_volume(int product_volume) {
-        this.product_volume = product_volume;
+    public Date getCreateAt() {
+        return createAt;
     }
-    
+
 }

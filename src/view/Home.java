@@ -1,30 +1,54 @@
 package view;
 
+import base.BaseApp;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import view.thongKe.ThongKe;
 import view.hoaDon.HoaDon;
 import view.nhanVien.NhanVien;
 import view.khachHang.KhachHang;
-import view.khoHang.KhoHang;
+import view.hangHoa.HangHoa;
+import view.nhanVien.Schedule;
+
 public class Home extends javax.swing.JFrame {
-    KhoHang khoHang;
+
+    HangHoa khoHang;
     KhachHang khachHang;
     NhanVien nhanVien;
+    Schedule schedule;
     HoaDon hoaDon;
     ThongKe thongKe;
+
     public Home() {
         super.setTitle("QUẢN LÍ BÁN HÀNG");
         initComponents();
-        khoHang = new KhoHang();
+        khoHang = new HangHoa();
         khachHang = new KhachHang();
         nhanVien = new NhanVien();
+        schedule = new Schedule();
         hoaDon = new HoaDon();
         thongKe = new ThongKe();
         TabbedPaneHome.addTab("Kho hàng", khoHang);
         TabbedPaneHome.addTab("Khách hàng", khachHang);
-        TabbedPaneHome.addTab("Nhân viên", nhanVien);
+        if (BaseApp.permission == 1) {
+            TabbedPaneHome.addTab("Nhân viên", nhanVien);
+        } else {
+            TabbedPaneHome.addTab("Nhân viên", schedule);
+
+        }
         TabbedPaneHome.addTab("Hóa đơn", hoaDon);
         TabbedPaneHome.addTab("Thống kê", thongKe);
+//        setEvent();
     }
+
+    public final void setEvent() {
+        TabbedPaneHome.addChangeListener(new ChangeListener() {
+            public void stateChanged(ChangeEvent e) {
+                System.out.println("Tab: " + TabbedPaneHome.getSelectedIndex());
+            }
+        });
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
