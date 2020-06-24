@@ -56,7 +56,7 @@ public class HoaDonController {
             pstm.setInt(1, product_ID);
             ResultSet rs = pstm.executeQuery();
             rs.next();
-            product_nameString = rs.getString("name_product");
+            product_nameString = rs.getString("product_name");
             rs.close();
             pstm.close();
         } catch (SQLException ex) {
@@ -83,7 +83,7 @@ public class HoaDonController {
 
     public void store_order(int order_ID, String customer_phone_number, int employee_ID, ArrayList<Product> product_list, ArrayList<OrderProduct> order_product_list) {
         try {
-            PreparedStatement pstm = BaseApp.connectDB().prepareStatement("Insert into orders (customer_phone_number, employeeID, create_at) values ( ?, ?, ?)");
+            PreparedStatement pstm = BaseApp.connectDB().prepareStatement("Insert into orders (phone_number, employeeID, create_at) values ( ?, ?, ?)");
 
             pstm.setString(1, customer_phone_number);
             pstm.setInt(2, employee_ID);

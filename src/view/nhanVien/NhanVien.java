@@ -48,6 +48,11 @@ public class NhanVien extends javax.swing.JPanel {
 
         btnDelete.setText("Xóa");
         btnDelete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnChange.setText("Sửa");
         btnChange.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -183,6 +188,10 @@ public class NhanVien extends javax.swing.JPanel {
          String querySearch = queryData + " WHERE name = '" + txtName.getText() + "'";
          dataEmployee.callData(querySearch, tableEmployee);
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

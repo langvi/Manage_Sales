@@ -1,8 +1,6 @@
 package view;
 
 import base.BaseApp;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import view.thongKe.ThongKe;
 import view.hoaDon.HoaDon;
 import view.nhanVien.NhanVien;
@@ -38,15 +36,6 @@ public class Home extends javax.swing.JFrame {
         }
         TabbedPaneHome.addTab("Hóa đơn", hoaDon);
         TabbedPaneHome.addTab("Thống kê", thongKe);
-//        setEvent();
-    }
-
-    public final void setEvent() {
-        TabbedPaneHome.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                System.out.println("Tab: " + TabbedPaneHome.getSelectedIndex());
-            }
-        });
     }
 
     @SuppressWarnings("unchecked")

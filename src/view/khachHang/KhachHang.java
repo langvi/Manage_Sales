@@ -17,12 +17,17 @@ public class KhachHang extends javax.swing.JPanel {
         initComponents();
         controller = new KhachHangController();
         controller.fetchDataCustomer(tbkhachhang, querySQL);
+        setTotalCustomer();
     }
 
     public void ProcessCrt(boolean b) {
 
         this.btEdit.setEnabled(b);
-        this.btDelete.setEnabled(b);
+    }
+
+    public void setTotalCustomer() {
+        String queryTotal = "SELECT COUNT(*) FROM customer";
+        totalCustomer.setText(Integer.toString(controller.getTotalCustomer(queryTotal)));
     }
 
     @SuppressWarnings("unchecked")
@@ -38,7 +43,6 @@ public class KhachHang extends javax.swing.JPanel {
         btLook = new javax.swing.JButton();
         txtNS = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        btDelete = new javax.swing.JButton();
         btRefesh = new javax.swing.JButton();
         txtTKH = new javax.swing.JTextField();
         btEdit = new javax.swing.JButton();
@@ -49,6 +53,7 @@ public class KhachHang extends javax.swing.JPanel {
         btnew = new javax.swing.JButton();
         txtSDT = new javax.swing.JTextField();
         txtGT = new javax.swing.JTextField();
+        totalCustomer = new javax.swing.JLabel();
 
         jLabel1.setText("Số Điện Thoại");
 
@@ -83,13 +88,6 @@ public class KhachHang extends javax.swing.JPanel {
         });
 
         jLabel2.setText("Tên Khách hàng");
-
-        btDelete.setText("Xóa");
-        btDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btDeleteActionPerformed(evt);
-            }
-        });
 
         btRefesh.setText("Cập Nhật");
         btRefesh.addActionListener(new java.awt.event.ActionListener() {
@@ -147,6 +145,8 @@ public class KhachHang extends javax.swing.JPanel {
             }
         });
 
+        totalCustomer.setText(":");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,7 +175,9 @@ public class KhachHang extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(khTong)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(totalCustomer, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                         .addComponent(txtLook, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btLook, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -183,7 +185,6 @@ public class KhachHang extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btRefesh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btEdit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnew))
                 .addGap(54, 54, 54))
             .addGroup(layout.createSequentialGroup()
@@ -230,14 +231,13 @@ public class KhachHang extends javax.swing.JPanel {
                         .addGap(30, 30, 30)
                         .addComponent(btRefesh)
                         .addGap(41, 41, 41)
-                        .addComponent(btEdit)
-                        .addGap(18, 18, 18)
-                        .addComponent(btDelete)))
+                        .addComponent(btEdit)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLook, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btLook)
-                    .addComponent(khTong))
+                    .addComponent(khTong)
+                    .addComponent(totalCustomer))
                 .addContainerGap(145, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -266,10 +266,6 @@ public class KhachHang extends javax.swing.JPanel {
     private void txtNSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNSActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNSActionPerformed
-
-    private void btDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btDeleteActionPerformed
-
-    }//GEN-LAST:event_btDeleteActionPerformed
 
     private void btRefeshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRefeshActionPerformed
         controller.fetchDataCustomer(tbkhachhang, querySQL);
@@ -335,7 +331,6 @@ public class KhachHang extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btDelete;
     private javax.swing.JButton btEdit;
     private javax.swing.JButton btLook;
     private javax.swing.JButton btRefesh;
@@ -349,6 +344,7 @@ public class KhachHang extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel khTong;
     private javax.swing.JTable tbkhachhang;
+    private javax.swing.JLabel totalCustomer;
     private javax.swing.JTextField txtDC;
     private javax.swing.JTextField txtGT;
     private javax.swing.JTextField txtLook;

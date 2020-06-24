@@ -579,7 +579,6 @@ public class HoaDon extends javax.swing.JPanel {
             STT = 0;
             total_price = 0;
             VAT = 0;
-            maHoaDon_TextField.setText(Integer.toString(od.getOrder_ID()));
             tenKhachHang_TextField.setText("");
             soDienThoai_TextField.setText("");
             gioiTinh_TextField.setText("");
@@ -588,28 +587,33 @@ public class HoaDon extends javax.swing.JPanel {
             soLuong_TextField.setText("");
             VAT_TextField.setText("");
             tongTien_TextField.setText("");
+            setThongTinChung();
         }
     }//GEN-LAST:event_hoaDonMoi_TextFieldActionPerformed
 
     private void themSanPham_ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themSanPham_ButtonActionPerformed
         // TODO add your handling code here:
-        int product_ID = Integer.parseInt(maSanPham_TextField.getText());
-        int product_qty = Integer.parseInt(soLuong_TextField.getText());
-        product_show = new String[6];
-        Product pd = new Product();
-        product_list.add(pd);
-        OrderProduct od_p = new OrderProduct(od.getOrder_ID(), product_ID, product_qty);
-        order_product_list.add(od_p);
-        STT += 1;
-        product_show[0] = Integer.toString(STT);
-        product_show[1] = pd.getName();
-        product_show[2] = Integer.toString(product_ID);
-        product_show[3] = Integer.toString(product_qty);
-        product_show[4] = Float.toString(pd.getRetail_price());
-        product_show[5] = Float.toString(product_qty * pd.getRetail_price());
-        DefaultTableModel model = (DefaultTableModel) order_JTable.getModel();
-        model.addRow(product_show);
-        re_cal_VAT_price();
+        if (maSanPham_TextField.getText().isEmpty() || soLuong_TextField.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Chưa nhập mã sản phẩm hoặc số lượng");
+        } else {
+            int product_ID = Integer.parseInt(maSanPham_TextField.getText());
+            int product_qty = Integer.parseInt(soLuong_TextField.getText());
+            product_show = new String[6];
+            Product pd = new Product(hoaDonController.get_product_name(product_ID), hoaDonController.get_product_retail_price(product_ID));
+            product_list.add(pd);
+            OrderProduct od_p = new OrderProduct(od.getOrder_ID(), product_ID, product_qty);
+            order_product_list.add(od_p);
+            STT += 1;
+            product_show[0] = Integer.toString(STT);
+            product_show[1] = pd.getName();
+            product_show[2] = Integer.toString(product_ID);
+            product_show[3] = Integer.toString(product_qty);
+            product_show[4] = Float.toString(pd.getRetail_price());
+            product_show[5] = Float.toString(product_qty * pd.getRetail_price());
+            DefaultTableModel model = (DefaultTableModel) order_JTable.getModel();
+            model.addRow(product_show);
+            re_cal_VAT_price();
+        }
     }//GEN-LAST:event_themSanPham_ButtonActionPerformed
 
     private void maHoaDon_TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_maHoaDon_TextFieldActionPerformed

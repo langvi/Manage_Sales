@@ -45,7 +45,9 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="khTong" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="175" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="totalCustomer" min="-2" pref="116" max="-2" attributes="0"/>
+                      <EmptySpace pref="53" max="32767" attributes="0"/>
                       <Component id="txtLook" min="-2" pref="527" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btLook" min="-2" pref="114" max="-2" attributes="0"/>
@@ -55,7 +57,6 @@
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="btRefesh" alignment="0" max="32767" attributes="0"/>
                   <Component id="btEdit" alignment="0" max="32767" attributes="0"/>
-                  <Component id="btDelete" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnew" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
@@ -116,8 +117,6 @@
                       <Component id="btRefesh" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Component id="btEdit" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btDelete" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -125,6 +124,7 @@
                   <Component id="txtLook" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btLook" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="khTong" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="totalCustomer" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="145" max="32767" attributes="0"/>
           </Group>
@@ -188,14 +188,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="T&#xea;n Kh&#xe1;ch h&#xe0;ng"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btDelete">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="X&#xf3;a"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btDeleteActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btRefesh">
       <Properties>
@@ -299,6 +291,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtGTActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="totalCustomer">
+      <Properties>
+        <Property name="text" type="java.lang.String" value=":"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

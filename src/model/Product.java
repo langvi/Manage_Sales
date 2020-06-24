@@ -14,6 +14,14 @@ public class Product {
     private String note;
     private Date createAt;
 
+    public Product() {
+    }
+
+    public Product(String name, float retail_price) {
+        this.name = name;
+        this.retail_price = retail_price;
+    }
+
     public String getId() {
         return id;
     }

@@ -108,11 +108,27 @@ public class KhachHangController {
             pst.setString(5, customer.getCustomer_address());
             pst.setString(6, dateString);
             pst.execute();
+            JOptionPane.showMessageDialog(null, " Đã thêmm thành công", "Thông báo", 1);
 
         } catch (SQLException ex) {
             Logger.getLogger(KhachHangController.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, " Đã tồn tại", "Thông báo", 1);
+
         }
 
+    }
+
+    public int getTotalCustomer(String query) {
+        int total = 0;
+        try {
+            Statement st = BaseApp.connectDB().createStatement();
+            ResultSet rs = st.executeQuery(query);
+            rs.first();
+            total = rs.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(KhachHangController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return total;
     }
 
 }
