@@ -18,6 +18,7 @@ public class ThemKhachHang extends javax.swing.JFrame {
         super.setTitle("Thêm khách hàng");
         addCustomer = new Customer();
         controller = new KhachHangController();
+        setBounds(200, 100, 600, 600);
         initComponents();
         ButtonGroup bg = new ButtonGroup();
         bg.add(btnNam);

@@ -12,6 +12,7 @@ public class AddProduct extends javax.swing.JFrame {
     public AddProduct() {
         initComponents();
         choose_category();
+        setBounds(250, 60, 1000, 600);
         hangHoa = new HangHoaController();
     }
 
