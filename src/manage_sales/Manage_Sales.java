@@ -1,8 +1,6 @@
 package manage_sales;
 
-import base.BaseApp;
 import view.Login;
-import view.nhanVien.EmployeeInfo;
 
 public class Manage_Sales {
     

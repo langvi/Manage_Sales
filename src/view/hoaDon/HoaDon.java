@@ -65,7 +65,7 @@ public class HoaDon extends javax.swing.JPanel {
         String queryEmployee = "SELECT name, employeeID FROM employees WHERE userID = ";
         // lay ngay thang
         Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String dateString = formatter.format(date);
         // lay ma hoa don
         String maHoaDon = hoaDonController.fetchData(queryOrder);

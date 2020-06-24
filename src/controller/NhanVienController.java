@@ -10,7 +10,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import java.sql.PreparedStatement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
@@ -126,34 +125,5 @@ public class NhanVienController {
             Logger.getLogger(NhanVienController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-//    public void searchEmployee(String name, JTable table) {
-//         DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
-//        tableModel.setRowCount(0);
-//        ArrayList<Employee> list = new ArrayList<>();
-//        try {
-//            Statement st = BaseApp.connectDB().createStatement();
-//            String query = "SELECT * FROM employees WHERE name = '" + name + "'";
-//            ResultSet rs = st.executeQuery(query);
-//
-//            while (rs.next()) {
-//                Employee employee = new Employee();
-//                
-//                list.add(employee);
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(NhanVienController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//        for (int i = 0; i < list.size(); i++) {
-//            String[] data = new String[5];
-//            data[0] = list.get(i).getName();
-//            data[1] = list.get(i).getId();
-//            data[2] = Integer.toString(list.get(i).getProduct_number());
-//            data[3] = BaseApp.formatMoney(list.get(i).getRetail_price());
-//            data[4] = list.get(i).getCategory();
-//            tableModel.addRow(data);
-//        }
-//        table.setModel(tableModel);
-//        tableModel.fireTableDataChanged();
-//    }
+
 }

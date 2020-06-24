@@ -50,7 +50,7 @@ public class Product {
         return retail_price;
     }
 
-    public void setRetail_price(int retail_price) {
+    public void setRetail_price(float retail_price) {
         this.retail_price = retail_price;
     }
 
@@ -58,7 +58,7 @@ public class Product {
         return entry_price;
     }
 
-    public void setEntry_price(int entry_price) {
+    public void setEntry_price(float entry_price) {
         this.entry_price = entry_price;
     }
 
