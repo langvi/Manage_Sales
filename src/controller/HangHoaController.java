@@ -33,10 +33,10 @@ public class HangHoaController {
             while (rs.next()) {
                 Product product = new Product();
                 product.setName(rs.getString("product_name"));
-                product.setId(rs.getString("productID"));
+                product.setId(rs.getString("product_ID"));
                 product.setProduct_number(rs.getInt("product_number"));
-                product.setRetail_price(rs.getInt("retail_price"));
-                product.setCategory(rs.getString("category"));
+                product.setRetail_price(rs.getInt("product_retail_price"));
+                product.setCategory(rs.getString("product_category"));
                 list.add(product);
                 listProduct.add(product);
             }
@@ -65,7 +65,7 @@ public class HangHoaController {
         try {
             Statement st = BaseApp.connectDB().createStatement();
             String query = "INSERT INTO product(product_name, "
-                    + "category,retail_price, entry_price, product_number, note, create_at) "
+                    + "product_category,product_retail_price, entry_price, product_number, note, create_at) "
                     + "VALUES ('" + base_product.getName() + "','" + base_product.getCategory() + "',"
                     + base_product.getRetail_price() + "," + base_product.getEntry_price()
                     + "," + base_product.getProduct_number() + ","
@@ -89,10 +89,10 @@ public class HangHoaController {
             while (rs.next()) {
                 Product product = new Product();
                 product.setName(rs.getString("product_name"));
-                product.setId(rs.getString("productID"));
+                product.setId(rs.getString("product_ID"));
                 product.setProduct_number(rs.getInt("product_number"));
-                product.setRetail_price(rs.getInt("retail_price"));
-                product.setCategory(rs.getString("category"));
+                product.setRetail_price(rs.getInt("product_retail_price"));
+                product.setCategory(rs.getString("product_category"));
                 list.add(product);
             }
         } catch (SQLException ex) {
@@ -113,22 +113,22 @@ public class HangHoaController {
 
     }
 
-    public void searching_category(String text, JTable table) {
+    public void searching_product_category(String text, JTable table) {
         DefaultTableModel tableModel = (DefaultTableModel) table.getModel();
         tableModel.setRowCount(0);
         ArrayList<Product> list = new ArrayList<>();
         try {
             Statement st = BaseApp.connectDB().createStatement();
-            String query = "SELECT * FROM product WHERE category = '" + text + "'";
+            String query = "SELECT * FROM product WHERE product_category = '" + text + "'";
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()) {
                 Product product = new Product();
                 product.setName(rs.getString("product_name"));
-                product.setId(rs.getString("productID"));
+                product.setId(rs.getString("product_ID"));
                 product.setProduct_number(rs.getInt("product_number"));
-                product.setRetail_price(rs.getInt("retail_price"));
-                product.setCategory(rs.getString("category"));
+                product.setRetail_price(rs.getInt("product_retail_price"));
+                product.setCategory(rs.getString("product_category"));
                 list.add(product);
             }
         } catch (SQLException ex) {

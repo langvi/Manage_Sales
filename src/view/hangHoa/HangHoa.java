@@ -8,7 +8,7 @@ import javax.swing.JComboBox;
 
 public class HangHoa extends javax.swing.JPanel {
     
-    String queryData = "SELECT product_name, productID, product_number, retail_price, category FROM product";
+    String queryData = "SELECT product_name, product_ID, product_number, product_retail_price, product_category FROM product";
     HangHoaController hangHoa;
     
     public HangHoa() {
