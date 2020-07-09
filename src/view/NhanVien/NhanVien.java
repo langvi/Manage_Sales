@@ -7,16 +7,16 @@ package view.NhanVien;
 
 import controller.EmployeeController;
 
-public class NewManager extends javax.swing.JPanel {
- EmployeeController dataEmployee;
+public class NhanVien extends javax.swing.JPanel {
+EmployeeController dataEmployee;
     String queryData = "SELECT employee_ID, employee_name, employee_birth,"
-            + "employee_phone_number, employee_address,employee_work_time,"
+            + "employee_phone_number, employee_address, employee_work_time,"
             + "employee_work_day, employee_salary FROM employee";
     /**
-     * Creates new form NewManager
+     * Creates new form NewNhanVien
      */
-    public NewManager() {
-         dataEmployee = new EmployeeController();
+    public NhanVien() {
+        dataEmployee = new EmployeeController();
         initComponents();
         // do du lieu vao bang
         dataEmployee.callData(queryData, tableEmployee);
@@ -32,50 +32,29 @@ public class NewManager extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel_TTNV = new javax.swing.JLabel();
-        btnNew = new javax.swing.JButton();
         txtID = new javax.swing.JTextField();
-        btnDelete = new javax.swing.JButton();
         panel1 = new java.awt.Panel();
         jScrollPane4 = new javax.swing.JScrollPane();
         tableEmployee = new javax.swing.JTable();
         scrollbar1 = new java.awt.Scrollbar();
-        jLabel2 = new javax.swing.JLabel();
-        btnChange = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
-        btnExit = new javax.swing.JButton();
         btnSearch = new javax.swing.JButton();
+        btnExit = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnChange = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        btnNew = new javax.swing.JButton();
 
         jLabel_TTNV.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel_TTNV.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel_TTNV.setText("QUẢN LÝ NHÂN VIÊN");
 
-        btnNew.setText("+ Thêm mới");
-        btnNew.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnNew.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNewActionPerformed(evt);
-            }
-        });
-
         txtID.setBackground(new java.awt.Color(204, 204, 204));
         txtID.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         txtID.setName("txtID"); // NOI18N
-        txtID.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtIDMouseClicked(evt);
-            }
-        });
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIDActionPerformed(evt);
-            }
-        });
-
-        btnDelete.setText("Xóa");
-        btnDelete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
             }
         });
 
@@ -95,9 +74,7 @@ public class NewManager extends javax.swing.JPanel {
         panel1.setLayout(panel1Layout);
         panel1Layout.setHorizontalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 1085, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         panel1Layout.setVerticalGroup(
             panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,16 +84,6 @@ public class NewManager extends javax.swing.JPanel {
                 .addGap(307, 307, 307))
         );
 
-        jLabel2.setText("Mã nhân viên");
-
-        btnChange.setText("Sửa");
-        btnChange.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btnChange.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnChangeActionPerformed(evt);
-            }
-        });
-
         btnUpdate.setText("Cập nhật");
         btnUpdate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -124,6 +91,9 @@ public class NewManager extends javax.swing.JPanel {
                 btnUpdateActionPerformed(evt);
             }
         });
+
+        btnSearch.setText("Tìm kiếm");
+        btnSearch.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnExit.setText("Đóng");
         btnExit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -133,8 +103,26 @@ public class NewManager extends javax.swing.JPanel {
             }
         });
 
-        btnSearch.setText("Tìm kiếm");
-        btnSearch.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnDelete.setText("Xóa");
+        btnDelete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        btnChange.setText("Sửa");
+        btnChange.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnChange.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChangeActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Mã nhân viên");
+
+        btnNew.setText("+ Thêm mới");
+        btnNew.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -190,31 +178,9 @@ public class NewManager extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        // TODO add your handling code here:
-        //        Employee AddEmployee = new Employee();
-        //        AddEmployee.setVisible(true);
-        //        this.dispose();
-        new EmployeeInfo().setVisible(true);
-    }//GEN-LAST:event_btnNewActionPerformed
-
-    private void txtIDMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIDMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDMouseClicked
-
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
-        // TODO add your handling code here:
-        new EmployeeInfo().setVisible(true);
-       
-    }//GEN-LAST:event_btnChangeActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
@@ -225,6 +191,18 @@ public class NewManager extends javax.swing.JPanel {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btnExitActionPerformed
+
+    private void btnChangeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChangeActionPerformed
+        // TODO add your handling code here:
+        Employee ChangeEmployee = new Employee();
+        ChangeEmployee.setVisible(true);
+    }//GEN-LAST:event_btnChangeActionPerformed
+
+    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+        // TODO add your handling code here:
+        Employee AddEmployee = new Employee();
+        AddEmployee.setVisible(true);
+    }//GEN-LAST:event_btnNewActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
