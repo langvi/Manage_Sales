@@ -22,13 +22,13 @@ import javax.swing.JTextField;
 public class LoginController {
 
     String queryUserName = "SELECT user_name FROM user";
-    String queryPassword = "SELECT password FROM user";
+    String queryPassword = "SELECT user_password FROM user";
     String queryPermission = "SELECT * FROM user";
 
     // Kiểm tra tính hợp lệ của thông tin đăng nhập
     public int CheckValidate(String txtUserName, String txtPassword) {
         if (isCheck(queryUserName, txtUserName, "user_name")
-                && isCheck(queryPassword, txtPassword, "password")) {
+                && isCheck(queryPassword, txtPassword, "user_password")) {
             if (checkPermission(queryPermission, txtUserName)) {
                 return 1; // admin
             } else {
@@ -40,11 +40,11 @@ public class LoginController {
     }
     // Lưu mật khẩu của người dùng
 
-    public void savePassword(String path, String userName, String password) {
+    public void savePassword(String path, String userName, String user_password) {
         File file = new File(path);
         String[] data = {
             userName,
-            password
+            user_password
         };
         OutputStream outputStream;
         try {
@@ -113,7 +113,7 @@ public class LoginController {
             ResultSet result = stm.executeQuery(query);
             while (result.next()) {
                 if (result.getString("user_name").equals(userName)) {
-                    if (result.getString("permission").equals(permissionString)) {
+                    if (result.getString("user_permission").equals(permissionString)) {
                         return true;
                     }
                 }

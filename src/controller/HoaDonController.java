@@ -39,8 +39,8 @@ public class HoaDonController {
             Statement stm = BaseApp.connectDB().createStatement();
             ResultSet result = stm.executeQuery(query);
             result.first();
-            employee.setId(result.getInt("employeeID"));
-            employee.setName(result.getString("name"));
+            employee.setId(result.getInt("employee_ID"));
+            employee.setName(result.getString("employee_name"));
             return employee;
 
         } catch (SQLException ex) {
@@ -52,7 +52,7 @@ public class HoaDonController {
     public String get_product_name(int product_ID) {
         String product_nameString = "";
         try {
-            PreparedStatement pstm = BaseApp.connectDB().prepareStatement("Select * from product where productID=?");
+            PreparedStatement pstm = BaseApp.connectDB().prepareStatement("Select * from product where product_ID=?");
             pstm.setInt(1, product_ID);
             ResultSet rs = pstm.executeQuery();
             rs.next();
@@ -66,24 +66,24 @@ public class HoaDonController {
     }
 
     public float get_product_retail_price(int product_ID) {
-        float product_retail_price = 0;
+        float product_product_retail_price = 0;
         try {
-            PreparedStatement pstm = BaseApp.connectDB().prepareStatement("Select * from product where productID=?");
+            PreparedStatement pstm = BaseApp.connectDB().prepareStatement("Select * from product where product_ID=?");
             pstm.setInt(1, product_ID);
             ResultSet rs = pstm.executeQuery();
             rs.next();
-            product_retail_price = rs.getFloat("retail_price");
+            product_product_retail_price = rs.getFloat("product_retail_price");
             rs.close();
             pstm.close();
         } catch (SQLException ex) {
             Logger.getLogger(HoaDonController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return product_retail_price;
+        return product_product_retail_price;
     }
 
     public void store_order(int order_ID, String customer_phone_number, int employee_ID, ArrayList<Product> product_list, ArrayList<OrderProduct> order_product_list) {
         try {
-            PreparedStatement pstm = BaseApp.connectDB().prepareStatement("Insert into orders (phone_number, employeeID, create_at) values ( ?, ?, ?)");
+            PreparedStatement pstm = BaseApp.connectDB().prepareStatement("Insert into orders (customer_phone_number, employee_ID, order_create_at) values ( ?, ?, ?)");
 
             pstm.setString(1, customer_phone_number);
             pstm.setInt(2, employee_ID);
@@ -94,7 +94,7 @@ public class HoaDonController {
             pstm.execute();
 
             for (OrderProduct od_p : order_product_list) {
-                pstm = BaseApp.connectDB().prepareStatement("insert into order_product (productID, total_product) values ( ?, ?)");
+                pstm = BaseApp.connectDB().prepareStatement("insert into order_product (product_ID, total_product) values ( ?, ?)");
 
                 pstm.setInt(1, od_p.getProduct_ID());
                 pstm.setInt(2, od_p.getTotal_product());

@@ -19,7 +19,7 @@ public class BaseApp {
     public static final Connection connectDB() {
         Connection conn;
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/sales_database?autoReconnect=true&useSSL=false",
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/tuanvu?autoReconnect=true&useSSL=false",
                     "root", "");
             return conn;
         } catch (SQLException ex) {

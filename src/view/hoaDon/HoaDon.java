@@ -27,8 +27,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import controller.HoaDonController;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class HoaDon extends javax.swing.JPanel {
 
@@ -53,7 +53,9 @@ public class HoaDon extends javax.swing.JPanel {
         hoaDonController = new HoaDonController();
         initComponents();
         setThongTinChung();
+        set_date();
 
+        set_order_ID();
     }
 
     public void setThongTinChung() {
@@ -61,24 +63,36 @@ public class HoaDon extends javax.swing.JPanel {
         Employee employee = new Employee();
 
         String queryOrder = "SELECT MAX(order_ID) FROM orders";
-        String queryUserID = "SELECT userID from user WHERE user_name = '" + BaseApp.userName + "'";
-        String queryEmployee = "SELECT name, employeeID FROM employees WHERE userID = ";
+        String queryUserID = "SELECT user_ID from user WHERE user_name = '" + BaseApp.userName + "'";
+        String queryEmployee = "SELECT employee_name, employee_ID FROM employee WHERE user_ID = ";
         // lay ngay thang
-        Date date = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String dateString = formatter.format(date);
+//        Date date = new Date();
+//        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//        String dateString = formatter.format(date);
         // lay ma hoa don
-        String maHoaDon = hoaDonController.fetchData(queryOrder);
-        Integer maHoaDonMoi = Integer.parseInt(maHoaDon) + 1;
+//        String maHoaDon = hoaDonController.fetchData(queryOrder);
+//        Integer maHoaDonMoi = Integer.parseInt(maHoaDon) + 1;
         // lay ten nhan vien
         int userId = Integer.parseInt(hoaDonController.fetchData(queryUserID));
         queryEmployee += userId;
         employee = hoaDonController.fetchDataEmployee(queryEmployee);
-        maHoaDon_TextField.setText(maHoaDonMoi.toString());
-        ngayXuat_TextField.setText(dateString);
+//        maHoaDon_TextField.setText(maHoaDonMoi.toString());
+//        ngayXuat_TextField.setText(dateString);
         tenNhanVien_TextField.setText(employee.getName());
         maNhanVien_TextField.setText(employee.getId() + "");
 
+    }
+
+    private void set_date() {
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+        String formattedDateTime = currentDateTime.format(formatter);
+        ngayXuat_TextField.setText(formattedDateTime);
+    }
+
+    private void set_order_ID() {
+        od.setOrder_ID((hoaDonController.get_last_order_ID() + 1));
+        maHoaDon_TextField.setText(Integer.toString(od.getOrder_ID()));
     }
 
     private void re_cal_VAT_price() {
@@ -234,6 +248,8 @@ public class HoaDon extends javax.swing.JPanel {
         order_JTable = new javax.swing.JTable();
         VAT_TextField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+
+        setPreferredSize(new java.awt.Dimension(1113, 600));
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 204));
         jLabel5.setText("Mã nhân viên");
@@ -574,6 +590,7 @@ public class HoaDon extends javax.swing.JPanel {
                 model.removeRow(i);
             }
             od.setOrder_ID(od.getOrder_ID() + 1);
+            maHoaDon_TextField.setText(Integer.toString(od.getOrder_ID()));
             order_product_list.clear();
             product_list.clear();
             STT = 0;
@@ -587,7 +604,6 @@ public class HoaDon extends javax.swing.JPanel {
             soLuong_TextField.setText("");
             VAT_TextField.setText("");
             tongTien_TextField.setText("");
-            setThongTinChung();
         }
     }//GEN-LAST:event_hoaDonMoi_TextFieldActionPerformed
 

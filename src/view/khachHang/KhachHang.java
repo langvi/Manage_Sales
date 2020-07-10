@@ -10,8 +10,8 @@ public class KhachHang extends javax.swing.JPanel {
 
     KhachHangController controller;
     String phoneNumber = "";
-    String querySQL = "SELECT `phone_number`,`customer_name`,`customer_sex`,`year_of_birth`,"
-            + "`address` FROM customer";
+    String querySQL = "SELECT `customer_phone_number`,`customer_name`,`customer_sex`,`customer_birth`,"
+            + "`customer_address` FROM customer";
 
     public KhachHang() {
         initComponents();

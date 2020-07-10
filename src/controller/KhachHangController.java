@@ -27,10 +27,10 @@ public class KhachHangController {
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 Customer customer = new Customer();
-                customer.setCustomer_phone_number(rs.getString("phone_number"));
+                customer.setCustomer_phone_number(rs.getString("customer_phone_number"));
                 customer.setCustomer_name(rs.getString("customer_name"));
-                customer.setCustomer_address(rs.getString("address"));
-                customer.setCustomer_birth(rs.getString("year_of_birth"));
+                customer.setCustomer_address(rs.getString("customer_address"));
+                customer.setCustomer_birth(rs.getString("customer_birth"));
                 customer.setCustomer_sex(rs.getString("customer_sex"));
                 list.add(customer);
             }
@@ -54,18 +54,18 @@ public class KhachHangController {
     }
 
     public void searchCustomer(String phoneNumber, Customer customer) {
-        String sql1 = "SELECT customer_name,year_of_birth,phone_number,address,"
-                + "customer_sex FROM customer where phone_number='" + phoneNumber + "'";
+        String sql1 = "SELECT customer_name,customer_birth,customer_phone_number,customer_address,"
+                + "customer_sex FROM customer where customer_phone_number='" + phoneNumber + "'";
         try {
 
             Statement st = BaseApp.connectDB().createStatement();
             ResultSet rs = st.executeQuery(sql1);
             if (rs.first())//nếu có dữ liệu
             {
-                customer.setCustomer_phone_number(rs.getString("phone_number"));
+                customer.setCustomer_phone_number(rs.getString("customer_phone_number"));
                 customer.setCustomer_name(rs.getString("customer_name"));
-                customer.setCustomer_address(rs.getString("address"));
-                customer.setCustomer_birth(rs.getString("year_of_birth"));
+                customer.setCustomer_address(rs.getString("customer_address"));
+                customer.setCustomer_birth(rs.getString("customer_birth"));
                 customer.setCustomer_sex(rs.getString("customer_sex"));
             }
 
@@ -78,8 +78,8 @@ public class KhachHangController {
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         String dateString = formatter.format(date);
-        String sql = "UPDATE `customer` SET `phone_number`=?,`customer_name`=?,`customer_sex`=?,"
-                + "`year_of_birth`=?,`address`=?,`create_at`=? WHERE `phone_number` =" + phoneNumber;
+        String sql = "UPDATE `customer` SET `customer_phone_number`=?,`customer_name`=?,`customer_sex`=?,"
+                + "`customer_birth`=?,`customer_address`=?,`customer_create_at`=? WHERE `customer_phone_number` =" + phoneNumber;
         try {
             PreparedStatement pst = BaseApp.connectDB().prepareStatement(sql);
             pst.setString(1, customer.getCustomer_phone_number());
